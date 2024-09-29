@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blitz Core</title>
+
+    <!-- Add Favicon -->
+    <!-- <link rel="shortcut icon" href="./favicon.png" type="image/png" /> -->
+    <link rel="icon" href="./favicon.png" type="image/png" />
+
+    <!-- Font for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Integration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        font-family: "Pixelify Sans", sans-serif;
+        margin: 0;
+        background-color: black;
+        overflow: hidden;
+      }
+
+      #top-score-value,
+      #score-value,
+      #mainScoreEl {
+        font-family: "Jersey 25", sans-serif;
+      }
+
+      #top-score-value {
+        display: inline-block; /* Allows transformation like scaling */
+      }
+      .top-score-animation {
+        animation: scaleAndColorChange 2s ease-in-out;
+      }
+
+      @keyframes scaleAndColorChange {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.4);
+          color: gold;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed text-white select-none ml-2 mt-1">
+      <span>Score: </span>
+      <span id="score-value">0</span>
+    </div>
+
+    <div class="fixed text-white select-none ml-2 mt-8">
+      <span>Top Score: </span>
+      <span id="top-score-value">0</span>
+    </div>
+
+    <div class="fixed inset-0 flex items-center justify-center" id="modelEl">
+      <div class="bg-white max-w-lg w-screen text-center p-6 rounded-sm">
+        <h1 class="text-4xl font-bold leading-none" id="mainScoreEl">0</h1>
+        <p class="text-sm text-gray-700 mb-4">Points</p>
+        <div>
+          <button
+            class="bg-blue-500 text-white w-full py-2 rounded-full text-lg"
+            id="startGame"
+          >
+            Start Game
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <canvas></canvas>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
