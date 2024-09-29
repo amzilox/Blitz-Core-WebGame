@@ -107,8 +107,11 @@ const y = canvas.height / 2;
 let player = new Player(x, y, 10, "white"); // Player is represented by a small white circle
 
 // Function to spawn enemies at random intervals and locations
+let enemyInterval;
+const enemySpawnTime = 1400; // 2 seconds
+
 function spawnEnemies() {
-  setInterval(() => {
+  enemyInterval = setInterval(() => {
     const radius = Math.random() * (30 - 5) + 5; // Random radius for enemies between 5 and 30
     let x;
     let y;
@@ -128,8 +131,23 @@ function spawnEnemies() {
       y: Math.sin(angle), // Y velocity toward player
     };
     enemies.push(new Enemy(x, y, radius, color, velocity)); // Add new enemy to the array
-  }, 1400); // Spawn enemies every 1.4 seconds
+  }, enemySpawnTime); // Spawn enemies every 1.4 seconds
 }
+
+function stopEnemySpawn() {
+  clearInterval(enemyInterval);
+}
+
+// Listen for visibility change
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // Stop spawning enemies when the tab is not active
+    stopEnemySpawn();
+  } else {
+    // Restart spawning enemies when the tab becomes active
+    spawnEnemies();
+  }
+});
 
 let animationId; // For storing the animation frame request ID
 
